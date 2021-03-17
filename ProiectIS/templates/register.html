@@ -1,0 +1,81 @@
+{% extends 'primaPagina.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <style>
+    @media (min-width: 760px) {
+    .container{
+        max-width: 400px;
+    }
+}
+    .card{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(197, 181, 174, 0.75);
+        border-radius:25px;
+        font-weight:bold;
+    }
+    </style>
+      <div class="card" style="width: 30rem;" >
+          <div class="card-body">
+              <h2 style="text-align: center"> Înregistrare</h2>
+        <div class="container" style>
+      <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="tip">Tip utilizator</label>
+            <select name="tip" class="form-control" required>
+                <option value="" selected="true" disabled="disabled">--</option>
+                {% for key, value in tip %}
+                    <option value="{{key}}"
+                            {% if key == values.tip %}
+                            selected
+                            {% endif %}
+                    >{{value}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="nume">Nume</label>
+            <input type="text" name="nume" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="prenume">Prenume</label>
+            <input type="text" name="prenume" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="facultate">Facultate</label>
+            <input type="text" name="facultate" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="nr_matricol">Numar matricol</label>
+            <input type="number" min="0" name="nr_matricol" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" class="form-control" size="10" required>
+        </div>
+           <div class="form-group">
+            <label for="nr_telefon">Numar telefon</label>
+            <input type="text" name="nr_telefon" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="parola">Parola</label>
+            <input type="password" name="parola" class="form-control" size="10" required>
+        </div>
+          <div class="form-group">
+            <label for="parola2">Confirmare parola</label>
+            <input type="password" name="parola2" class="form-control" size="10" required>
+        </div>
+
+        <input type="submit" value="Creează" class="btn btn-secondary btn-block">
+      <p class="text-left">Aveți deja un cont? <a href="{% url 'login' %}">Accesați contul</a> </p>
+      </form>
+    </div>
+          </div>
+      </div>
+{% endblock %}

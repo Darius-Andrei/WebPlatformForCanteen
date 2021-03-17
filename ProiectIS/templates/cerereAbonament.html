@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block content %}
+    <style>
+    p.small {
+        line-height:1;
+        margin-left: 130px;
+        margin-top: 30px;
+        font-size: 20px;
+    }
+     p.medium{
+        line-height: 1;
+        margin-left: 150px;
+        font-size: 20px;
+    }
+    p.big {
+        line-height: 1;
+        margin-left: 170px;
+        font-size: 20px;
+    }
+    p.superbig {
+        line-height: 1;
+        margin-left: 187px;
+        font-size: 20px;
+    }
+    </style>
+    <p class="small"><b>Momentan nu deți un abonament</b>. Pentru a intra în posesia acestuia, te invităm să apeși pe butonul de mai jos.</p>
+    <p class="medium">La apăsarea acestui buton, noi vom ști că dorești să te abonezi și te așteptăm începând cu ziua următoare depunerii cererii la sediul nostru,</p>
+    <p class="big"> în urma achitării sumei de 35 de lei, vei primi o dovadă privind abonărea și vei beneficia de o reducere de 15% la toate produsele timp de
+        o lună</p>
+    <p class="superbig">începând cu data de la care ai achitat suma.
+
+        <br><br><br><br><br>
+    {% include 'alerts.html' %}
+   <form action="{% url 'abonament' %}" method='POST'>
+        {% csrf_token %}
+       <div style="text-align: center">
+        <button type="submit" , name="CerereAbonament", class="btn btn-info btn-sm">
+            Cerere abonament
+        </button>
+       </div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    </form>
+{% endblock %}

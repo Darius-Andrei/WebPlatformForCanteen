@@ -1,0 +1,21 @@
+{%  extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+.container{
+    margin-top: 40px;
+}
+</style>
+    <div>
+        <div class="container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+            <br>
+            <input class="btn btn-primary" type="submit" name="Update Information">
+                <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

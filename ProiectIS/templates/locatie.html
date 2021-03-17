@@ -1,0 +1,55 @@
+{% extends "primaPagina.html" %}
+
+{% block content %}
+<style>
+
+
+    .parent{
+        position: relative;
+        top:0;
+        left:200px;
+    }
+    .tab1{
+        position:relative;
+        top:-300px;
+        left:0;
+        border:1px;
+        transform: rotate(90deg);
+    }
+    .tab2{
+        position:absolute;
+        top:30px;
+        left:105px;
+        border:1px;
+        border-radius:50px;
+    }
+
+
+    .la-dreapta{
+
+        justify-content: space-between;
+        font-size: 18px;
+        margin: 100px 175px 0px 175px;
+    }
+
+
+
+</style>
+    <div class="la-dreapta">
+    <p class="tab">Ne puteți găsi la adresa de mai jos<br>
+    <b>{{ contact.numele_strazii }}</b>
+        <br>
+         <br>
+         <br>
+        ...sau ne puteți contacta la următoarea adresă de email<br>
+    <b> {{ contact.email }} </b>
+    </p>
+        <div class="parent">
+            <img class="tab1" src="/media/images/curpator.png"  width="1000" height="1000" style="">
+            <iframe class="tab2" src="{{ contact.locatie }}" width="700" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+        </div>
+
+</div>
+
+{% endblock %}

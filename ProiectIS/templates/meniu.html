@@ -1,0 +1,117 @@
+{% extends 'index.html' %}
+{% block content %}
+    <style>
+    .table {
+    background-color: rgba(210, 193, 180, 0.50);
+}
+    </style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image" >
+		  <thead>
+		    <tr>
+		      <th  scope="col">Nume</th>
+		      <th  scope="col">Imagine</th>
+		      <th  scope="col">Bucătar</th>
+		      <th  scope="col">Preț</th>
+              <th  scope="col">Ingrediente</th>
+              <th  scope="col">Alergeni</th>
+              <th  scope="col">Observații suplimentare</th>
+              <th  scope="col">Stoc</th>
+                {% if user == notBucatari.user %}
+              <th  scope="col">Adaugă în Coș</th>
+                {% endif %}
+                    {% if user == bucatari.user %}
+                    {% endif %}
+                {% if user == bucatari.user %}
+              <th scope="col">Modificare produs</th>
+                {% endif %}
+                    {% if user == notBucatari.user %}
+                    {% endif %}
+                {% if user == bucatari.user %}
+              <th scope="col">Eliminare produs</th>
+                {% endif %}
+                    {% if user == notBucatari.user %}
+                    {% endif %}
+		    </tr>
+		  </thead>
+		  <tbody >
+            {% for produs in produseBucatar %}
+                <tr>
+                  <td>
+                        {{produs.nume}}
+                  </td>
+                   <td >
+                       <img src="{{produs.imagine.url}}" width=260 height=180>
+                  </td>
+                    <td>
+                        {{produs.bucatar.newchef.nume}} {{produs.bucatar.newchef.prenume}}
+                    </td>
+                    <td>
+                        {{produs.pret}}
+                    </td>
+                    <td>
+                        {{produs.ingrediente}}
+                    </td>
+                    <td>
+                        {{produs.alergeni}}
+                    </td>
+                    <td>
+                        {{produs.observatii}}
+                    </td>
+                    <td>
+                        {{produs.stoc}}
+                    </td>
+                {% if user == notBucatari.user  %}
+                    <td>
+                        {% if produs.stoc != 0 %}
+                            <form action="{% url 'adauga_in_cos' produs.id %}" method="POST" >
+                            {% csrf_token %}
+                            <button type="submit", name="adaugaButonCos", value="{{ produs.id }}", class="btn btn-success btn-sm">
+                                Adauga in cos
+                            </button>
+                            </form>
+                        {%endif%}
+                    </td>
+                    {%endif%}
+                    {% if user == bucatari.user %}
+                    {% endif %}
+                    <td>
+                        {% if user == bucatari.user %}
+                        <a href="{% url 'modifica_produs' produs.id %}"class="btn btn-info " role="button" id="modifyProduct">
+                            Modifică produs
+                        </a>
+                        {% endif %}
+                    {% if user == notBucatari.user %}
+                    {% endif %}
+                    </td>
+                    <td>
+                        {% if user == bucatari.user %}
+                        <a href="{% url 'elimina_produs' produs.id %}"class="btn btn-danger " role="button" id="eliminateProduct">
+                            Elimina produs
+                        </a>
+                        {% endif %}
+                    {% if user == notBucatari.user %}
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+		</tbody>
+	</table>
+  </div>
+</div>
+    {% if user == bucatari.user %}
+    <a href="{% url 'adaugare_produs_meniu' %}" class="btn btn-info btn-sm" >Adaugă produs</a>
+    {% endif %}
+    {% if user == notBucatari.user %}
+    {% endif %}
+
+</div>
+<script>
+    for (var i=0; i<30; i++){
+        document.write('<br>');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light" style=" background-color: rgba(210, 193, 180, 0.25); ">
+  <a class="navbar-brand" href="{% url 'home_logged_in' %}"><img src="\media\images\Leu.png" width=60 height=60></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home_logged_in' %}"><b>Home</b> <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'meniu' %}"><b>Meniu</b></a>
+      </li>
+      <li class="nav-item">
+          {% if request.user.newuser %}
+        <a class="nav-link" href="{% url 'vizualizareCos' %}"><b>Cos</b></a>
+          {% endif %}
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'dateUtilizator' %}"><b>Profil</b></a>
+      </li>
+      <li class="nav-item">
+          {% if request.user.newuser %}
+        <a class="nav-link" href="{% url 'abonament' %}"><b>Abonament</b></a>
+          {% endif %}
+      </li>
+    </ul>
+  </div>
+    <span class="nav-item">
+        Salutare, {{ request.user.newuser.prenume }} {{ request.user.newchef.prenume }}
+    </span>
+
+    <span >
+        <a class="nav-link" href="{% url 'logout' %}"> logout</a>
+    </span>
+</nav>

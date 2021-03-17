@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% block content %}
+
+    <style>
+    .table {
+    background-color: rgba(210, 193, 180, 0.50);
+}
+    </style>
+    {% if cos.user.id == user.id %}
+        {% if cos.nr_prod != 0 %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image" >
+		  <thead>
+		    <tr>
+		      <th  scope="col">Nume</th>
+		      <th  scope="col">Preț</th>
+              <th  scope="col">Cantitate</th>
+              <th  scope="col">Elimină din coș</th>
+		    </tr>
+		  </thead>
+		  <tbody >
+            {% for produs in produseCos %}
+                <tr>
+                  <td>
+                        {{produs.product.nume}}
+                  </td>
+                  <td>
+                        {{produs.get_price}}
+                  </td>
+                  <td>
+                        {{produs.cantitate_comandata}}
+                  </td>
+                  <td>
+                        <form action="{% url 'elimina_din_cos' produs.id%}" method='POST'>
+                        {% csrf_token %}
+                        <button type="submit" , name="stergereProdusCos", value="{{ produs.id  }}", class="btn btn-danger btn-sm">
+                            Elimina din cos
+                        </button>
+                        </form>
+                  </td>
+                </tr>
+            {% endfor %}
+		</tbody>
+	</table>
+  </div>
+</div>
+<p>Cost total: {{cos.pret_total}}</p>
+    <a href="{% url 'finalizareComanda' cos.id %}" class="btn btn-info btn-sm" >Finalizare comanda</a>
+</div>
+            {% else  %}
+            <p style="text-align: center; font-size: 30px; margin-top: 100px;">Momentan nu aveți niciun produs în coș!</p>
+         {% endif %}
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light " style=" background-color: rgba(210, 193, 180, 0.25); ">
+  <a class="navbar-brand" href="{% url 'home' %}"><img src="\media\images\Leu.png" width=60 height=60></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}"><b>CantinaLeul</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'locatie' %}"><b>Contact</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ajutor' %}"><b>Obținere cont</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}"><b>Înregistrare</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}"><b>Accesare cont</b></a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
